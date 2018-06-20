@@ -42,6 +42,7 @@ export class CourseGridComponent implements OnInit {
   }
 
   ngOnInit() {
+     this.username = "";
     this.service.findAllCourses()
       .then(courses => this.courses = courses);
     this.userService
