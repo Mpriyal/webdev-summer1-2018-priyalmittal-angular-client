@@ -1,36 +1,65 @@
 <div class="container-fluid">
-  <h1>Sections for course: {{courseId}}</h1>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand">Section List</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/profile">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" *ngIf="username === 'admin';" routerLink="/user-admin">Admin Page</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
   <div *ngIf="username === 'admin';">
-  <input [(ngModel)]="sectionName"
-         placeholder="Section Name"
-         class="form-control">
-  <input [(ngModel)]="seats"
-         placeholder="Seats available"
-         class="form-control">
-  <button (click)="createSection(sectionName, seats)" class="btn btn-success btn-block">
-    Add Section
-  </button>
-    <button class="btn btn-primary btn-block"
-            (click)="updateSection(section._id)">Update</button>
+    <h2 class="alignment">Modify sections for course: {{courseId}}</h2>
   </div>
-
-  <ul class="list-group">
-    <li *ngFor="let section of sections" class="list-group-item">
-      Name: {{section.name}}, Seats: {{section.seats}}
-      <div *ngIf="username === 'admin'">
-        <button class="float-right btn btn-danger"
-        (click)="deleteSection(section._id)">Delete</button>
-        <button class="float-right btn btn-primary"
-        (click)="findSectionById(section._id)">Update</button>
-      </div>
-      <div *ngIf="username !== 'admin' && section.seats > 0">
-      <button (click)="enroll(section)"
-              class="float-right btn btn-primary">Enroll</button>
-      </div>
-    </li>
-  </ul>
-  <button class="btn btn-primary" (click)="logout()">Logout </button>
-  <a routerLink="/profile">Profile | </a>
-  <a routerLink="/home">Home </a>
-
+  <div *ngIf="username !== 'admin';">
+    <h2 class="alignment">Sections for course: {{courseId}} :</h2>
+  </div>
+  <div *ngIf="username === 'admin';">
+    <input [(ngModel)]="sectionName"
+           placeholder="Section Name"
+           class="form-control">
+    <input [(ngModel)]="seats"
+           placeholder="Seats available"
+           class="form-control">
+    <button (click)="createSection(sectionName, seats)" class="btn btn-success btn-block">
+      Add Section
+    </button>
+    <button class="btn btn-primary btn-block"
+            (click)="updateSection(section._id)">Update
+    </button>
+  </div>
+  <div class="padding">
+    <ul class="list-group">
+      <li *ngFor="let section of sections" class="list-group-item">
+        Name: {{section.name}}, Seats: {{section.seats}}
+        <div *ngIf="username === 'admin'">
+          <button class="float-right btn btn-danger" style="margin-right:1px"
+                  (click)="deleteSection(section._id)">Delete
+          </button>
+          <button class="float-right btn btn-primary" style="margin-left:1px"
+                  (click)="findSectionById(section._id)">Update
+          </button>
+          </div>
+        <div *ngIf="username !== 'admin' && section.seats > 0">
+          <button (click)="enroll(section)"
+                  class="float-right btn btn-primary">Enroll
+          </button>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="padding">
+    <button class="btn btn-primary" (click)="logout()">Logout</button>
+  </div>
 </div>
