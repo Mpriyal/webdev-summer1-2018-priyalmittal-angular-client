@@ -1,26 +1,32 @@
 <div class="container-fluid">
-<h1>Course Navigator ({{courses.length}})</h1>
-
+  <h1>Course Navigator ({{courses.length}})</h1>
   <div class="row">
-    <div class="col-3">
+    <div class="col-6">
       <ul class="list-group">
         <li class="list-group-item active">Courses</li>
-        <li *ngFor="let course of courses"
-            (click)="selectCourse(course.id)"
-            class="list-group-item">
+        <li class="list-group-item active webdev"
+            *ngFor="let course of courses"
+            [ngClass]="{'active': course.id === selectedCourseId}">
           {{course.title}}
+          <div class="float-right">
+          <button (click)="selectCourse(course.id)">View Sections</button>
+          </div>
+          <div class="float-right">
+            <button (click)="routeToSections(course.id)">Add Section</button>
+          </div>
         </li>
       </ul>
     </div>
-    <div class="col-3">
+    <div class="col-6">
       <ul class="list-group">
-        <li class="list-group-item active">Modules</li>
-        <li *ngFor="let module of modules" class="list-group-item">
-          {{module.title}}
-        </li>
+        <li class="list-group-item active">Sections</li>
+          <li class="list-group-item active webdev"
+              *ngFor="let section of sections">
+            {{section.name}}
+          </li>
       </ul>
     </div>
-    <div class="col-3">lessons</div>
-    <div class="col-3">widgets</div>
   </div>
+  <button class="btn btn-primary" (click)="logout()">Logout </button>
+  <a routerLink="/home">Home </a>
 </div>

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {CourseNavigatorServiceClient} from "../services/course-navigator.service.client";
+import {CourseNavigatorServiceClient} from '../services/course-navigator.service.client';
+import {SectionServiceClient} from "../services/section.service.client";
+import {Router} from "@angular/router";
+import {UserServiceClient} from "../services/user.service.client";
 
 @Component({
   selector: 'app-course-navigator',
@@ -8,16 +11,31 @@ import {CourseNavigatorServiceClient} from "../services/course-navigator.service
 })
 export class CourseNavigatorComponent implements OnInit {
 
-  constructor(private service: CourseNavigatorServiceClient) { }
-
+  constructor(private service: CourseNavigatorServiceClient,
+              private sectionService: SectionServiceClient,
+              private userService: UserServiceClient,
+              private router: Router) {
+  }
   courses = [];
-  modules = [];
+  selectedCourseId = 0;
+  widgets = [];
+  sections = [];
 
   selectCourse(courseId) {
-    this.service.findAllModulesForCourses(courseId)
-      .then(modules => this.modules = modules);
+    this.selectedCourseId = courseId;
+    this.service.findAllSectionsForCourse(courseId)
+      .then(sections => this.sections = sections);
   }
-
+  routeToSections(courseId) {
+    this.selectedCourseId = courseId;
+    this.router.navigate(['course/' + courseId + '/section']);
+  }
+  logout() {
+    this.userService
+      .logout()
+      .then(() =>
+        this.router.navigate(['login']));
+  }
   ngOnInit() {
     this.service.findAllCourses()
       .then(courses => this.courses = courses);
