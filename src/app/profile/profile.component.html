@@ -1,17 +1,21 @@
 <div class="container-fluid">
   <h1>Profile</h1>
 
-  <input [(ngModel)]="username"
-         placeholder="username"
-         class="form-control"/>
+  <label>{{username}}</label>
   <input [(ngModel)]="firstName"
-         placeholder="first name"
+         placeholder="First Name"
          class="form-control"/>
   <input [(ngModel)]="lastName"
-         placeholder="lastName"
+         placeholder="Last Name"
          class="form-control"/>
   <input [(ngModel)]="email"
-         placeholder="email"
+         placeholder="Email"
+         class="form-control"/>
+  <input [(ngModel)]="phone"
+         placeholder="Phone Number"
+         class="form-control"/>
+  <input [(ngModel)]="address"
+         placeholder="Address"
          class="form-control"/>
   <button (click)="updateUser()"
           class="btn btn-primary btn-block">
@@ -22,12 +26,19 @@
 
   <ul class="list-group">
     <li *ngFor="let enrollment of sections" class="list-group-item">
+      {{findCourseNameById(enrollment.section.courseId)}}
+      {{courseName}}
       {{enrollment.section.name}}
       ({{enrollment.section.seats}})
+      <div class="float-right">
+      <button (click)="unEnroll(enrollment.section)"
+        class="btn btn-danger">
+        Unenroll
+      </button>
+      </div>
     </li>
   </ul>
-
-  <a (click)="logout()">Logout</a>
-  <a routerLink="/home">Home</a>
-
+  <button class="btn btn-primary" (click)="logout()">Logout </button>
+  <a routerLink="/home">Home | </a>
+  <a *ngIf="username === 'admin';" routerLink="/user-admin">User Admin Page</a>
 </div>

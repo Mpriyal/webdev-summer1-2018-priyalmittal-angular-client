@@ -16,7 +16,7 @@ export class RegisterComponent implements OnInit {
   password;
   password2;
   register(username, password, password2) {
-    if (password === password2) {
+      if (password === password2) {
       this.service
         .findUserByUsername(username)
         .then(newUser => {
@@ -27,7 +27,7 @@ export class RegisterComponent implements OnInit {
               .then(() =>
                 this.router.navigate(['profile']));
           } else {
-            alert("User already exists");
+            alert("Username already exists");
           }
         });
     } else {
