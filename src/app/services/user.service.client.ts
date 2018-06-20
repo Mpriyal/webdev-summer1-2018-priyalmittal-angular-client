@@ -21,7 +21,8 @@ export class UserServiceClient {
       headers: {
         'content-type': 'application/json'
       }
-    });
+    })
+      .then(response => response.json());
   }
 
   logout() {
@@ -58,7 +59,9 @@ export class UserServiceClient {
       password: password,
       email: "",
       firstName: "",
-      lastName: ""
+      lastName: "",
+      phone: "",
+      address: ""
     };
     return fetch('http://localhost:4000/api/user', {
       body: JSON.stringify(user),
