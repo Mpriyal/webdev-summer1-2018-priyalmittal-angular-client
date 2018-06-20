@@ -1,5 +1,6 @@
-<h2>Course Grid ({{courses.length}})</h2>
 <div class="container-fluid">
+  <h1 class="alignment">Welcome to White Board!</h1>
+  <h2 class="alignment">List of {{courses.length}} courses is:</h2>
 <div class="row">
   <div *ngFor="let course of courses" class="col-sm-3">
     <div class="card">
@@ -10,7 +11,7 @@
         <a routerLink="/course/{{course.id}}"
            class="btn btn-primary">View</a>
         </div>
-        <div *ngIf="username !== 'admin'&& isEnrolled(course.id);">
+        <div *ngIf="username !== 'admin'&& username !== '' && isEnrolled(course.id);">
           <div class="float-right">
         <a routerLink="/course/{{course.id}}/section"
            class="btn btn-success">Enroll</a>
