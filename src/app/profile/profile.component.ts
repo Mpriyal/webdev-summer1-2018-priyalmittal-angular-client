@@ -30,6 +30,7 @@ export class ProfileComponent implements OnInit {
   phone;
   address;
   sections = [];
+  enrollment;
 
   updateUser() {
     this.user.username = this.username;
@@ -63,14 +64,14 @@ export class ProfileComponent implements OnInit {
           .then(sections => this.sections = sections);
       });
   }
-  findCourseNameById(courseId) {
-    this.courseService
-      .findCourseById(courseId)
-      .then(course => {
-        this.course = course.course;
-        this.courseName = course.title;
-      });
-  }
+  // findCourseNameById() {
+    //   this.courseService
+    //     .findCourseById(this.enrollment.section.courseId)
+    //     .then(course => {
+    //       this.course = course.course;
+    //       this.courseName = course.title;
+    //     });
+    // }
 
   ngOnInit() {
     this.service

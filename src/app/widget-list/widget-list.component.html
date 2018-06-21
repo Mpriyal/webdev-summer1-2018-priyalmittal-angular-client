@@ -23,13 +23,10 @@
       </ul>
     </div>
     <div *ngSwitchCase="'Paragraph'">
-      <h1>ParagraphWidget</h1>
-      <!--<ul class="list-group">-->
-        <!--<li class="list-group-item"-->
-            <!--*ngFor="let item of widget.items.split('|')">-->
-          <!--{{item}}-->
-        <!--</li>-->
-      <!--</ul>-->
+      <p>{{widget.text}}</p>
+    </div>
+    <div *ngSwitchCase="'Image'">
+      <img src={{widget.src}}>
     </div>
   </div>
 </div>
