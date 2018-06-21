@@ -17,7 +17,7 @@ export class CourseNavigatorServiceClient {
   }
   findAllSectionsForCourse(courseId) {
     console.log(courseId)
-    return fetch('http://localhost:4000/api/course/' + courseId + '/section')
+    return fetch('http://webdev-priyal-angular-server.herokuapp.com/api/course/' + courseId + '/section')
       .then(response => response.json());
   }
 }
