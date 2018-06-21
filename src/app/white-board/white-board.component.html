@@ -6,16 +6,16 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
-        <!--<li class="nav-item active">-->
-          <!--<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
-        <!--</li>-->
-        <!--<div *ngIf="username">-->
+        <div *ngIf="username === '';">
         <li class="nav-item">
           <a class="nav-link" routerLink="/login">Login</a>
         </li>
+        </div>
+        <div *ngIf="username === '';">
         <li class="nav-item">
           <a class="nav-link" routerLink="/register">Register</a>
         </li>
+        </div>
         <li class="nav-item">
           <a class="nav-link" routerLink="/profile">Profile</a>
         </li>

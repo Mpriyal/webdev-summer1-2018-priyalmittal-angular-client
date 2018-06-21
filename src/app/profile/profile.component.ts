@@ -64,14 +64,6 @@ export class ProfileComponent implements OnInit {
           .then(sections => this.sections = sections);
       });
   }
-  // findCourseNameById() {
-    //   this.courseService
-    //     .findCourseById(this.enrollment.section.courseId)
-    //     .then(course => {
-    //       this.course = course.course;
-    //       this.courseName = course.title;
-    //     });
-    // }
 
   ngOnInit() {
     this.service
